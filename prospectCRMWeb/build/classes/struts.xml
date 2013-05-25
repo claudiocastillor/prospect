@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.multipart.maxSize" value="25971529" />
+	
+	<package name="basicstruts2" namespace="/" extends="struts-default">
+	
+<!-- 	<interceptors>
+			<interceptor name="LoginInterceptor" class="cl.minju.siseval.action.LoginInterceptor"/>
+			<interceptor-stack name="loggingStack">
+		        <interceptor-ref name="LoginInterceptor" />
+		        <interceptor-ref name="defaultStack" />
+		    </interceptor-stack>
+	</interceptors> -->
+	
+	<default-interceptor-ref name="paramsPrepareParamsStack" />
+		
+		<!-- EJEMPLO IMPLEMENTACION DE INTERCEPTOR 
+		<action name="horarioAbierto" class="controllers.AtencionClienteController">
+			<interceptor-ref name="horarioAccesoClienteInterceptor"/>
+			<result>/views/abierto.jsp</result>
+			<result name="cerrado" type="redirect">horarioCerrado?apertura=${horaApertura}&amp;cierre=${horaCierre}</result>
+		</action> -->
+		
+		<action name="index" class="cl.crm.action.SessionAction" method="index" >
+			<!-- <interceptor-ref name="loggingStack"/> -->
+			<result name="no_login" type="redirect">/login</result>
+			<result name="success">/layout/layout.jsp</result>
+		</action>
+		
+		
+		
+
+
+
+
+    </package>
+</struts>
