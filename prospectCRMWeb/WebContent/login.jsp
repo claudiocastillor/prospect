@@ -4,7 +4,6 @@
 
 	<div class="alert alert-error">
 	  <button data-dismiss="alert" class="close" type="button">&times;</button>
-	  <%-- <strong>ERROR!</strong> Los datos ingresados no son v&aacute;lidos. --%>
 	  <strong>ERROR!</strong> <s:property value="error"/>
 	</div>
 
