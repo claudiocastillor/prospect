@@ -1,7 +1,13 @@
 package cl.prospect.crm.to;
 
-public class PermisoTo {
-	private long id;
+import java.io.Serializable;
+
+public class PermisoTo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long id;
 	private boolean agregarProspecto;
 
 	public long getId() {

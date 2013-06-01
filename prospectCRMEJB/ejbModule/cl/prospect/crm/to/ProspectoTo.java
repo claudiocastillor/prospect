@@ -1,9 +1,14 @@
 package cl.prospect.crm.to;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProspectoTo {
+public class ProspectoTo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private int rut;
 	private int rutDv;

@@ -1,6 +1,13 @@
 package cl.prospect.crm.to;
 
-public class RolTo {
+import java.io.Serializable;
+
+public class RolTo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private String nombre;
 	private PermisoTo permiso;

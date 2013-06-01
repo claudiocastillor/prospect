@@ -1,6 +1,13 @@
 package cl.prospect.crm.to;
 
-public class PersonaTo {
+import java.io.Serializable;
+
+public class PersonaTo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private String nombres;
 	private String apellidoPaterno;
