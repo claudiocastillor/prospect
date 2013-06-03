@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,7 +13,6 @@ import com.mysql.jdbc.Statement;
 
 import cl.prospect.crm.conexion.Conexion;
 import cl.prospect.crm.dao.interfaces.IProspectoDao;
-import cl.prospect.crm.to.ProspectoTo;
 import cl.prospect.crm.to.ProspectoTo;
 
 public class ProspectoDao implements IProspectoDao {
@@ -24,6 +24,9 @@ public class ProspectoDao implements IProspectoDao {
 	private ResourceBundle sql = null;
 
 	SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
+	
+//	para ser usada en los métodos con fecha tipo Date
+//	String fecha = (prospecto.getFecha() != null) ? formatoEntrada.format(prospecto.getFecha()) : null;
 	
 	@Override
 	public ProspectoTo getById(Long id) throws SQLException {
