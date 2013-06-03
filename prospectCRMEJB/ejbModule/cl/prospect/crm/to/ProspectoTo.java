@@ -25,7 +25,7 @@ public class ProspectoTo implements Serializable{
 	private String nacionalidad;
 	private String estadoCivil;
 	private double tipoSalud;
-	private double idColegio;
+	private ColegioTo colegio;
 	private int anioEgresoMedia;
 	private String documentado;
 	private Date fechaModificacion;
@@ -124,12 +124,12 @@ public class ProspectoTo implements Serializable{
 		this.tipoSalud = tipoSalud;
 	}
 
-	public double getIdColegio() {
-		return idColegio;
+	public ColegioTo getColegio() {
+		return colegio;
 	}
 
-	public void setIdColegio(double idColegio) {
-		this.idColegio = idColegio;
+	public void setColegio(ColegioTo colegio) {
+		this.colegio = colegio;
 	}
 
 	public int getAnioEgresoMedia() {
