@@ -13,7 +13,7 @@ public class PersonaTo implements Serializable{
 	private String apellidoPaterno;
 	private String apellidoMaterno;
 	private int rut;
-	private int rutDv;
+	private String rutDv;
 	private int telefono;
 	private int movil;
 	private String correo;
@@ -58,11 +58,11 @@ public class PersonaTo implements Serializable{
 		this.rut = rut;
 	}
 
-	public int getRutDv() {
+	public String getRutDv() {
 		return rutDv;
 	}
 
-	public void setRutDv(int rutDv) {
+	public void setRutDv(String rutDv) {
 		this.rutDv = rutDv;
 	}
 

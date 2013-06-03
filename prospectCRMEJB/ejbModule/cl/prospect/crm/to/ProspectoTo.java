@@ -11,16 +11,17 @@ public class ProspectoTo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private int rut;
-	private int rutDv;
+	private String rutDv;
 	private String nombres;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
+	private String sexo;
 
-	public enum sexo {
-		M, F
-	};
+//	public enum sexo {
+//		M, F
+//	};
 
-	private String fecha_nacimiento;
+	private Date fechaNacimiento;
 	private String nacionalidad;
 	private String estadoCivil;
 	private double tipoSalud;
@@ -31,7 +32,8 @@ public class ProspectoTo implements Serializable{
 	private boolean matriculado;
 	private Date matriculaFecha;
 	private int matriculaAnio;
-	private Date fecha_registro;
+	private Date fechaRegistro;
+	private DireccionTo direccion;
 
 	// private DireccionTo direccion;
 	public long getId() {
@@ -50,11 +52,11 @@ public class ProspectoTo implements Serializable{
 		this.rut = rut;
 	}
 
-	public int getRutDv() {
+	public String getRutDv() {
 		return rutDv;
 	}
 
-	public void setRutDv(int rutDv) {
+	public void setRutDv(String rutDv) {
 		this.rutDv = rutDv;
 	}
 
@@ -82,12 +84,20 @@ public class ProspectoTo implements Serializable{
 		this.apellidoMaterno = apellidoMaterno;
 	}
 
-	public String getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public String getSexo() {
+		return sexo;
 	}
 
-	public void setFecha_nacimiento(String fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public String getNacionalidad() {
@@ -170,12 +180,12 @@ public class ProspectoTo implements Serializable{
 		this.matriculaAnio = matriculaAnio;
 	}
 
-	public Date getFecha_registro() {
-		return fecha_registro;
+	public Date getFechaRegistro() {
+		return fechaRegistro;
 	}
 
-	public void setFecha_registro(Date fecha_registro) {
-		this.fecha_registro = fecha_registro;
+	public void setFechaRegistro(Date fecha_registro) {
+		this.fechaRegistro = fecha_registro;
 	}
 
 }
