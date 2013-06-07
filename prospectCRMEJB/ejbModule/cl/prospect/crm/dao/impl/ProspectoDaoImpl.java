@@ -23,12 +23,12 @@ public class ProspectoDaoImpl implements IProspectoDao{
 	@Override
 	public List<ProspectoTo> getByParameters(String parameter, String value)
 			throws SQLException {
-		return this.getByParameters(parameter, value);
+		return this.iprospectoDao.getByParameters(parameter, value);
 	}
 
 	@Override
-	public Long save(ProspectoTo p) throws SQLException {
-		return this.iprospectoDao.save(p);
+	public Long save(ProspectoTo prospecto) throws SQLException {
+		return this.iprospectoDao.save(prospecto);
 	}
 
 }
