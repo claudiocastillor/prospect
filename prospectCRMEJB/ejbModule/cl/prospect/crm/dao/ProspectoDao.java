@@ -12,7 +12,10 @@ import java.util.ResourceBundle;
 import com.mysql.jdbc.Statement;
 
 import cl.prospect.crm.conexion.Conexion;
+import cl.prospect.crm.dao.interfaces.IColegioDao;
 import cl.prospect.crm.dao.interfaces.IProspectoDao;
+import cl.prospect.crm.to.ColegioTo;
+import cl.prospect.crm.to.DireccionTo;
 import cl.prospect.crm.to.ProspectoTo;
 
 public class ProspectoDao implements IProspectoDao {
@@ -23,8 +26,8 @@ public class ProspectoDao implements IProspectoDao {
 	String sqlString = null;
 	private ResourceBundle sql = null;
 
-	SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
-	
+	IColegioDao icolegioDao;
+	IDireccionDao idireccionDao;
 //	para ser usada en los métodos con fecha tipo Date
 //	String fecha = (prospecto.getFecha() != null) ? formatoEntrada.format(prospecto.getFecha()) : null;
 	
@@ -57,7 +60,14 @@ public class ProspectoDao implements IProspectoDao {
 				prospecto.setNacionalidad(rs.getString("nacionalidad"));
 				prospecto.setEstadoCivil(rs.getString("estado_civil"));
 				prospecto.setTipoSalud(rs.getDouble("tipo_salud"));
-				prospecto.setIdColegio(rs.getDouble("id_colegio"));
+				Long idColegio = (long) rs.getDouble("id_colegio");
+				
+				
+				ColegioTo colegio = new ColegioTo();
+				colegio = this.icolegioDao.getById(idColegio);
+				
+				prospecto.setColegio(colegio);
+				
 				prospecto.setAnioEgresoMedia(rs.getInt("anio_egreso_media"));
 				prospecto.setDocumentado(rs.getString("documentado"));
 				prospecto.setFechaModificacion(rs.getDate("fecha_modificacion"));
@@ -65,7 +75,11 @@ public class ProspectoDao implements IProspectoDao {
 				prospecto.setMatriculaFecha(rs.getDate("matricula_fecha"));
 				prospecto.setMatriculaAnio(rs.getInt("matricula_anio"));
 				prospecto.setFechaRegistro(rs.getDate("fecha_registro"));
-				prospecto.set(rs.getDouble("id_direccion"));
+				
+				DireccionTo direccion = new DireccionTo();
+				direccion = this.idireccionDao.getById(idDireccion);
+				
+				prospecto.setDireccion(direccion);
 				
 
 			}
