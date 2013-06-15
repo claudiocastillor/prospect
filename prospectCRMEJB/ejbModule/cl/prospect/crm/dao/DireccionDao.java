@@ -1,6 +1,7 @@
 package cl.prospect.crm.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import cl.prospect.crm.dao.interfaces.IDireccionDao;
@@ -17,7 +18,7 @@ public class DireccionDao implements IDireccionDao {
 	@Override
 	public List<DireccionTo> getAll() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<DireccionTo>();
 	}
 
 	@Override
