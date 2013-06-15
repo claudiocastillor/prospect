@@ -11,7 +11,7 @@ public class DireccionDao implements IDireccionDao {
 	@Override
 	public DireccionTo getById(Long id) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		return new DireccionTo();
 	}
 
 	@Override
