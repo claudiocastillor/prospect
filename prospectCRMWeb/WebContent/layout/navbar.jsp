@@ -3,7 +3,7 @@
 
 	<ul class="nav">
 	
-		<li><a href="/prospectCRMWeb/index"><i class="icon-home"></i> Inicio </a></li>
+<!-- 		<li><a href="/prospectCRMWeb/index"><i class="icon-home"></i> Inicio </a></li> -->
 		
 		
 	    
