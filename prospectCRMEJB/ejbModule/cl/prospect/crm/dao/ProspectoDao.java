@@ -1,6 +1,7 @@
 package cl.prospect.crm.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import com.mysql.jdbc.Statement;
 
 import cl.prospect.crm.conexion.Conexion;
 import cl.prospect.crm.dao.interfaces.IColegioDao;
+import cl.prospect.crm.dao.interfaces.IDireccionDao;
 import cl.prospect.crm.dao.interfaces.IProspectoDao;
 import cl.prospect.crm.to.ColegioTo;
 import cl.prospect.crm.to.DireccionTo;
@@ -28,6 +30,8 @@ public class ProspectoDao implements IProspectoDao {
 
 	IColegioDao icolegioDao;
 	IDireccionDao idireccionDao;
+	
+	SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
 //	para ser usada en los métodos con fecha tipo Date
 //	String fecha = (prospecto.getFecha() != null) ? formatoEntrada.format(prospecto.getFecha()) : null;
 	
@@ -77,7 +81,7 @@ public class ProspectoDao implements IProspectoDao {
 				prospecto.setFechaRegistro(rs.getDate("fecha_registro"));
 				
 				DireccionTo direccion = new DireccionTo();
-				direccion = this.idireccionDao.getById(idDireccion);
+				direccion = this.idireccionDao.getById(direccion.getId());
 				
 				prospecto.setDireccion(direccion);
 				
@@ -163,23 +167,35 @@ public class ProspectoDao implements IProspectoDao {
 	}
 
 	@Override
-	public Long save(ProspectoTo p) throws SQLException {
+	public Long save(ProspectoTo prospecto) throws SQLException {
 		this.conn = this.con.connect("jndi_crm");
 
 		Long id = 0L;
 
 		try {
-			if (p.getId() == 0) {
+			if (prospecto.getId() == 0) {
 				this.stmtSelect = this.conn.prepareStatement(
 						this.sql.getString("SELECT_PROSPECTO_GRABAR"),
 						Statement.RETURN_GENERATED_KEYS);
-				this.stmtSelect.setString(2, p.getNombres());
-				this.stmtSelect.setString(3, p.getApellidoPaterno());
-				this.stmtSelect.setString(4, p.getApellidoMaterno());
-				this.stmtSelect.setInt(5, p.getRut());
-				this.stmtSelect.setString(6, p.getRutDv());
-				this.stmtSelect.setLong(7, p.getTelefono());
-				this.stmtSelect.setLong(8, p.getMovil());
+				this.stmtSelect.setInt(1, prospecto.getRut());
+				this.stmtSelect.setString(2, prospecto.getRutDv());
+				this.stmtSelect.setString(3, prospecto.getNombres());
+				this.stmtSelect.setString(4, prospecto.getApellidoPaterno());
+				this.stmtSelect.setString(5, prospecto.getApellidoMaterno());
+				this.stmtSelect.setString(6, prospecto.getSexo());
+				this.stmtSelect.setDate(7, prospecto.getFechaNacimiento());
+				this.stmtSelect.setString(8, prospecto.getNacionalidad());
+				this.stmtSelect.setString(9, prospecto.getEstadoCivil());
+				this.stmtSelect.setDouble(10, prospecto.getTipoSalud());
+				this.stmtSelect.setString(11, prospecto.getColegio().getId());
+				this.stmtSelect.setInt(12, prospecto.getAnioEgresoMedia());
+				this.stmtSelect.setString(13, prospecto.getDocumentado());
+				this.stmtSelect.setDate(14, prospecto.getFechaModificacion());
+				this.stmtSelect.setBoolean(15, prospecto.isMatriculado());
+				this.stmtSelect.setDate(16, prospecto.getMatriculaFecha());
+				this.stmtSelect.setInt(17, prospecto.getMatriculaAnio());
+				this.stmtSelect.setDate(18, prospecto.getFechaRegistro());
+				this.stmtSelect.setLong(19, prospecto.getDireccion().getId());
 
 				this.stmtSelect.executeUpdate();
 
@@ -190,14 +206,28 @@ public class ProspectoDao implements IProspectoDao {
 			} else {
 				this.stmtSelect = this.conn.prepareStatement(this.sql
 						.getString("SELECT_PROSPECTO_UPDATE"));
-				this.stmtSelect.setString(2, p.getNombres());
-				this.stmtSelect.setString(3, p.getApellidoPaterno());
-				this.stmtSelect.setString(4, p.getApellidoMaterno());
-				this.stmtSelect.setInt(5, p.getRut());
-				this.stmtSelect.setString(6, p.getRutDv());
-				this.stmtSelect.setLong(7, p.getTelefono());
-				this.stmtSelect.setLong(8, p.getMovil());
-				this.stmtSelect.setLong(9, p.getId());
+
+				this.stmtSelect.setLong(19, prospecto.getId());
+				this.stmtSelect.setInt(1, prospecto.getRut());
+				this.stmtSelect.setString(2, prospecto.getRutDv());
+				this.stmtSelect.setString(3, prospecto.getNombres());
+				this.stmtSelect.setString(4, prospecto.getApellidoPaterno());
+				this.stmtSelect.setString(5, prospecto.getApellidoMaterno());
+				this.stmtSelect.setString(6, prospecto.getSexo());
+				this.stmtSelect.setDate(7, prospecto.getFechaNacimiento());
+				this.stmtSelect.setString(8, prospecto.getNacionalidad());
+				this.stmtSelect.setString(9, prospecto.getEstadoCivil());
+				this.stmtSelect.setDouble(10, prospecto.getTipoSalud());
+				this.stmtSelect.setString(11, prospecto.getColegio().getId());
+				this.stmtSelect.setInt(12, prospecto.getAnioEgresoMedia());
+				this.stmtSelect.setString(13, prospecto.getDocumentado());
+				this.stmtSelect.setDate(14, prospecto.getFechaModificacion());
+				this.stmtSelect.setBoolean(15, prospecto.isMatriculado());
+				this.stmtSelect.setDate(16, prospecto.getMatriculaFecha());
+				this.stmtSelect.setInt(17, prospecto.getMatriculaAnio());
+				this.stmtSelect.setDate(18, prospecto.getFechaRegistro());
+				this.stmtSelect.setLong(19, prospecto.getDireccion().getId());
+				
 				this.stmtSelect.executeUpdate();
 			}
 		} catch (Exception e) {
