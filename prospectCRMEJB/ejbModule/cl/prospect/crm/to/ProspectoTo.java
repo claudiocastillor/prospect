@@ -1,7 +1,7 @@
 package cl.prospect.crm.to;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class ProspectoTo implements Serializable{
 
@@ -186,6 +186,14 @@ public class ProspectoTo implements Serializable{
 
 	public void setFechaRegistro(Date fecha_registro) {
 		this.fechaRegistro = fecha_registro;
+	}
+
+	public DireccionTo getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(DireccionTo direccion) {
+		this.direccion = direccion;
 	}
 
 }
